@@ -1,12 +1,12 @@
-#>whoami
+#whoami
 Manas Ramesh
-#>hostname
+#hostname
 Planet-C15
-#>cat My_Blog_Name 
+#cat My_Blog_Name 
 https://manasramesh.github.io/mns
-#>pwd
+#pwd
 /home/Planet-C15
-#>cd ..
+#cd ..
 <><>UnAuthorised ACCESS<><>
 You got Exit
 <><>F_C_K<><>
