@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My HTML5 Game</title>
+  </head>
+  <body>
+    <canvas id="gameCanvas" width="600" height="600"></canvas>
+
+    <script>
+      // Get a reference to the canvas element
+      var canvas = document.getElementById('gameCanvas');
+
+      // Get the 2D rendering context for the canvas
+      var ctx = canvas.getContext('2d');
+
+      // Define some game variables
+      var score = 0;
+      var lives = 3;
+
+      // Define some game objects
+      var player = {
+        x: 0,
+        y: 0,
+        width: 50,
+        height: 50,
+        speed: 5
+      };
+
+      var enemy = {
+        x: 0,
+        y: 0,
+        width: 50,
+        height: 50,
+        speed: 5
+      };
+
+      // Define some game functions
+      function update() {
+        // Update player position
+        player.x += player.speed;
+
+        // Update enemy position
+        enemy.x += enemy.speed;
+
+        // Check for collision between player and enemy
+        if (player.x + player.width > enemy.x &&
+            player.x < enemy.x + enemy.width &&
+            player.y + player.height > enemy.y &&
+            player.y < enemy.y + enemy.height) {
+          // Collision detected, reduce lives and reset positions
+          lives--;
+          player.x = 0;
+          enemy.x = 500;
+        }
+
+        // Check for game over
+        if (lives == 0) {
+          alert('Game Over');
+        }
+      }
+
+      function draw() {
+        // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw the player
+        ctx.fillRect(player.x, player.y, player.width, player.height);
+
+        // Draw the enemy
+        ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+
+        // Draw the score and lives
+        ctx.font = '16px Arial';
+        ctx.fillText('Score: ' + score, 8, 20);
+        ctx.fillText('Lives: ' + lives, canvas.width - 65, 20);
+      }
+
+      // Define the game loop
+      function loop() {
+        update();
+        draw();
+
+        // Schedule the next frame
+        requestAnimationFrame(loop);
+      }
+
+      // Start the game loop
+      loop();
+    </script>
+  </body>
+</html>
